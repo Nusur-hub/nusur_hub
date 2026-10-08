@@ -1,106 +1,874 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>حسابات أعضاء هيئة نسور المنهج</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
-<style>
-:root{--r1:#2a0505;--r2:#7a0000;--r3:#e8423f;--tx:#fff;--glass:rgba(255,255,255,.08);--ln:rgba(255,255,255,.28);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;min-height:100vh;color:var(--tx);font-family:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;background:#7a0000 radial-gradient(circle at 85% 28%,#e8423f 0,#b01a1a 22%,#7a0000 50%,#2a0505 100%) fixed}
-.wrap{max-width:440px;margin:auto;padding:18px 16px 130px}
-.title{background:var(--glass);border:1px solid var(--ln);border-radius:40px;padding:12px 16px;text-align:center;font-weight:700;font-size:1.05rem;text-shadow:0 1px 4px rgba(0,0,0,.45);margin-bottom:22px;backdrop-filter:blur(6px)}
-.item{background:linear-gradient(90deg,rgba(255,255,255,.07),rgba(255,255,255,.12));border:1px solid var(--ln);border-radius:36px;margin-bottom:12px;box-shadow:0 0 0 2px rgba(232,66,63,.28),0 6px 18px rgba(0,0,0,.25);overflow:hidden;transition:border-radius .25s}
-.head{display:flex;align-items:center;gap:12px;width:100%;padding:7px 8px 7px 16px;background:none;border:0;color:inherit;font:inherit;cursor:pointer;text-align:right}
-.av{width:48px;height:48px;flex:none;border-radius:50%;border:1px solid var(--ln);background:rgba(255,255,255,.1);display:grid;place-items:center}
-.av svg{width:22px;height:22px;fill:#fff}
-.nm{flex:1;font-weight:700;font-size:1rem;text-shadow:0 1px 3px rgba(0,0,0,.4)}
-.bd{font-size:.75rem;background:rgba(0,0,0,.25);border-radius:99px;padding:1px 9px;font-weight:500}
-.chev{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.75;transition:transform .25s}
-.item.open{border-radius:28px}
-.item.open .chev{transform:rotate(-90deg)}
-.panel{display:none;padding:2px 16px 16px}
-.item.open .panel{display:block}
-.sec{margin-top:10px}
-.sec b{display:flex;align-items:center;gap:6px;font-size:.8rem;opacity:.85;margin-bottom:6px;font-weight:500}
-.sec b svg{width:15px;height:15px}
-.links{display:flex;flex-direction:column;gap:6px}
-.links a{display:block;direction:ltr;text-align:left;padding:8px 14px;border-radius:99px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.links a:active{background:rgba(255,255,255,.2)}
-.empty{text-align:center;opacity:.8;padding:30px}
-nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);pointer-events:none}
-.bar{pointer-events:auto;direction:ltr;width:min(448px,calc(100% - 24px));height:68px;display:flex;align-items:center;justify-content:space-around;background:rgba(90,8,8,.88);backdrop-filter:blur(10px);border:1px solid var(--ln);border-bottom:0;border-radius:36px 36px 0 0;position:relative;padding:0 6px}
-.bar button{background:none;border:0;padding:10px;cursor:pointer;opacity:.55;transition:opacity .2s,transform .2s}
-.bar button svg{width:26px;height:26px;fill:#fff;display:block}
-.bar button.on{opacity:1;transform:translateY(-2px)}
-.bar .home{width:50px;height:50px;border-radius:50%;margin-top:-34px;background:linear-gradient(145deg,#b02020,#6a0808);border:3px solid rgba(255,255,255,.55);display:grid;place-items:center;padding:0;opacity:1;box-shadow:0 4px 14px rgba(0,0,0,.45)}
-.bar .home.on{box-shadow:0 0 0 3px rgba(255,255,255,.25),0 4px 14px rgba(0,0,0,.45)}
-.bar .home svg{width:24px;height:24px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#1f0003">
+    <title>حسابات أعضاء هيئة نسور المنهج</title>
+    <!-- استدعاء Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <!-- خط تجوال العربي -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        html {
+            background-color: #1f0003;
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            background: radial-gradient(100% 120% at 85% 30%, #ef4444 0%, #800000 45%, #1f0003 100%);
+            background-attachment: fixed;
+            min-height: 100%;
+            width: 100%;
+            color: white;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* تحسين وتخصيص شريط التمرير ليلائم الطابع الماروني */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(239, 68, 68, 0.3); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(239, 68, 68, 0.5); }
+
+        /* تأثيرات الزجاج الفاخرة المحدثة */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-btn:active { transform: scale(0.96) translateY(1px); }
+
+        .text-shadow { text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+
+        .fade-in { animation: fadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .top-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: radial-gradient(100% 120% at 85% 30%, #ef4444 0%, #800000 45%, #1f0003 100%);
+            background-attachment: fixed;
+            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        .bottom-mask {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 160px;
+            background: radial-gradient(100% 120% at 85% 30%, #ef4444 0%, #800000 45%, #1f0003 100%);
+            background-attachment: fixed;
+            -webkit-mask-image: linear-gradient(to top, black 65%, transparent 100%);
+            mask-image: linear-gradient(to top, black 65%, transparent 100%);
+            z-index: 30;
+            pointer-events: none;
+        }
+
+        /* هندسة الشريط السفلي المبتكرة المتناسقة */
+        .glass-nav-container {
+            width: 100%;
+            height: 70px;
+            position: relative;
+            direction: ltr;
+            --active-x: 50%;
+        }
+
+        .glass-nav-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            border-radius: 35px;
+            box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='70'%3E%3Cpath d='M0,0 L450,0 C465,0 465,35 500,35 C535,35 535,0 550,0 L1000,0 L1000,70 L0,70 Z' fill='black'/%3E%3C/svg%3E");
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1000' height='70'%3E%3Cpath d='M0,0 L450,0 C465,0 465,35 500,35 C535,35 535,0 550,0 L1000,0 L1000,70 L0,70 Z' fill='black'/%3E%3C/svg%3E");
+            -webkit-mask-size: 1000px 70px;
+            mask-size: 1000px 70px;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
+
+            -webkit-mask-position: calc(var(--active-x) - 500px) 0;
+            mask-position: calc(var(--active-x) - 500px) 0;
+            transition: -webkit-mask-position 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), mask-position 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .glass-nav-curve-clip {
+            position: absolute;
+            inset: 0;
+            border-radius: 35px;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .nav-curve-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.45);
+            stroke-width: 1.5px;
+            transform: translateX(calc(var(--active-x) - 50px));
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .glass-nav-content {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+            list-style: none;
+            position: relative;
+            padding: 0;
+            margin: 0;
+            z-index: 10;
+        }
+
+        .glass-nav-content li {
+            position: relative;
+            flex: 1;
+            height: 70px;
+            z-index: 2;
+        }
+
+        .glass-nav-content li a {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+        }
+
+        .glass-nav-content .icon {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .glass-nav-content .icon i {
+            font-size: 24px;
+            color: white;
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .glass-nav-content .list.active .icon {
+            transform: translateY(-30px);
+        }
+
+        .glass-nav-content .list.active .icon i {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        .indicator-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70px;
+            height: 70px;
+            transform: translateX(calc(var(--active-x) - 35px));
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .indicator-circle {
+            position: absolute;
+            top: -18px;
+            left: 12px;
+            width: 46px;
+            height: 46px;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            z-index: 2;
+        }
+
+        .indicator-circle.jumping {
+            animation: jump-arc 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes jump-arc {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-30px) scale(0.92); }
+            100% { transform: translateY(0); }
+        }
+
+        /* أيقونات مضمّنة بدل FontAwesome */
+        i.fa-brands,i.fa-solid{display:inline-block;width:1em;height:1em;background-color:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat;vertical-align:-.125em}
+        i.fa-facebook-f{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M14 8V6.5c0-.7.2-1.1 1.2-1.1H17V2.2C16.7 2.1 15.7 2 14.6 2 12.1 2 10.4 3.5 10.4 6.2V8H8v3.5h2.4V22H14V11.5h2.7L17.1 8z'/%3E%3C/svg%3E")}
+        i.fa-youtube{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3z'/%3E%3C/svg%3E")}
+        i.fa-tiktok{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M16.5 2h-3.2v12.3a2.8 2.8 0 1 1-2.8-2.8c.3 0 .6 0 .8.1V8.3a6 6 0 1 0 5.2 5.9V8.7a7.2 7.2 0 0 0 4.2 1.3V6.8c-2.3 0-4.2-1.9-4.2-4.8z'/%3E%3C/svg%3E")}
+        i.fa-instagram{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9a5.5 5.5 0 0 1-5.5 5.5h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.3a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z'/%3E%3C/svg%3E")}
+        i.fa-home{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill-rule='evenodd' d='M12 3 2 12h3v8h5v-5h4v5h5v-8h3z'/%3E%3C/svg%3E")}
+        i.fa-user{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8' r='4.2'/%3E%3Cpath d='M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5z'/%3E%3C/svg%3E")}
+        i.fa-users{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8' r='4.2'/%3E%3Cpath d='M4 20c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5z'/%3E%3C/svg%3E")}
+        i.fa-chevron-left{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M15 5l-7 7 7 7' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+        i.fa-arrow-right{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+        i.fa-arrow-up-right-from-square{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+        i.fa-link{--m:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+    </style>
 </head>
-<body>
-<div class="wrap"><div class="title">حسابات أعضاء هيئة نسور المنهج</div><div id="list"></div></div>
-<nav><div class="bar" id="bar"></div></nav>
+<body class="antialiased">
+
+<!-- الأقنعة السحرية الخلفية -->
+<div id="top-mask-el" class="top-mask"></div>
+<div id="bottom-mask-el" class="bottom-mask"></div>
+
+<div id="app-content-container" class="w-full max-w-md mx-auto min-h-screen flex flex-col relative p-4 box-border pb-32">
+
+    <!-- الواجهة الرئيسية -->
+    <div id="main-view" class="flex flex-col w-full pb-10">
+        <div class="sticky top-4 z-50 mb-6 pointer-events-none fade-in">
+            <div class="glass-panel rounded-full h-14 flex items-center justify-center px-4 relative pointer-events-auto shadow-lg">
+                <h1 class="text-[13px] min-[360px]:text-sm sm:text-base md:text-lg font-black text-shadow text-white text-center truncate leading-tight tracking-wide">
+                    حسابات أعضاء هيئة نسور المنهج
+                </h1>
+            </div>
+        </div>
+
+        <div id="names-container" class="w-full flex flex-col gap-3 relative z-10 fade-in"></div>
+
+        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-12 opacity-70 relative z-10 fade-in">
+            <div class="w-20 h-20 rounded-full bg-white/5 flex items-center justify-center border border-white/10 mb-4">
+                <i class="fa-solid fa-users text-3xl text-white"></i>
+            </div>
+            <p class="text-sm font-medium text-white">لا توجد أسماء حالياً</p>
+        </div>
+    </div>
+
+    <!-- واجهة عرض تفاصيل الشخص -->
+    <div id="profile-view" class="hidden flex flex-col w-full pb-10">
+        <div class="sticky top-4 z-50 mb-8 pointer-events-none fade-in">
+            <div class="glass-panel rounded-full h-14 flex items-center px-2 relative pointer-events-auto shadow-lg">
+                <button onclick="closeProfile()" class="w-10 h-10 rounded-full glass-btn flex items-center justify-center mr-1 shrink-0 text-white">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+                <div class="flex-1 text-center pr-2 pl-12 truncate flex flex-col justify-center">
+                    <h1 id="profile-name-title" class="text-sm min-[360px]:text-base sm:text-lg font-bold text-shadow truncate text-white leading-tight">اسم العضو</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full space-y-3 px-1 relative z-10 fade-in" id="links-container"></div>
+    </div>
+
+    <!-- واجهة المنصات -->
+    <div id="platform-view" class="hidden flex flex-col w-full pb-10">
+        <div class="sticky top-4 z-50 mb-6 pointer-events-none fade-in">
+            <div class="glass-panel rounded-full h-14 flex items-center justify-center relative pointer-events-auto shadow-lg px-4">
+                <h1 id="platform-title" class="text-sm min-[360px]:text-base sm:text-lg font-bold text-shadow truncate text-white leading-tight">اسم المنصة</h1>
+            </div>
+        </div>
+
+        <div class="w-full space-y-4 px-1 relative z-10 fade-in" id="platform-accounts-container"></div>
+
+        <div id="platform-empty-state" class="hidden flex flex-col items-center justify-center py-12 opacity-70 relative z-10 fade-in">
+            <div class="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center border border-white/10 mb-4">
+                <i class="fa-solid fa-link text-2xl text-white"></i>
+            </div>
+            <p class="text-sm font-medium text-white">لا توجد حسابات مضافة لهذه المنصة</p>
+        </div>
+    </div>
+</div>
+
+<!-- شريط التنقل السفلي -->
+<div id="bottom-nav" class="fixed bottom-6 left-0 right-0 mx-auto w-[calc(100%-2rem)] max-w-md z-50">
+    <div class="glass-nav-container" id="nav-container">
+        <div class="glass-nav-bg" id="nav-bg"></div>
+
+        <div class="glass-nav-curve-clip">
+            <svg id="nav-curve" class="nav-curve-svg" width="100" height="42" viewBox="0 0 100 42">
+                <path d="M0,0.5 C15,0.5 15,35.5 50,35.5 C85,35.5 85,0.5 100,0.5" />
+            </svg>
+        </div>
+
+        <ul class="glass-nav-content">
+            <li class="list" data-index="0">
+                <a href="#"><span class="icon"><i class="fa-brands fa-facebook-f"></i></span></a>
+            </li>
+            <li class="list" data-index="1">
+                <a href="#"><span class="icon"><i class="fa-brands fa-youtube"></i></span></a>
+            </li>
+            <li class="list active" data-index="2">
+                <a href="#"><span class="icon"><i class="fa-solid fa-home"></i></span></a>
+            </li>
+            <li class="list" data-index="3">
+                <a href="#"><span class="icon"><i class="fa-brands fa-tiktok"></i></span></a>
+            </li>
+            <li class="list" data-index="4">
+                <a href="#"><span class="icon"><i class="fa-brands fa-instagram"></i></span></a>
+            </li>
+
+            <div class="indicator-wrapper">
+                <div class="indicator-circle"></div>
+            </div>
+        </ul>
+    </div>
+</div>
+
 <script>
-const IC={
- fb:'<svg viewBox="0 0 24 24"><path d="M14 8V6.500c0-.700.200-1.100 1.200-1.100H17V2.200C16.700 2.100 15.700 2 14.600 2 12.100 2 10.400 3.500 10.400 6.200V8H8v3.500h2.400V22H14V11.500h2.700L17.100 8z"/></svg>',
- yt:'<svg viewBox="0 0 24 24"><path d="M21.600 7.200a2.500 2.500 0 0 0-1.800-1.800C18.200 5 12 5 12 5s-6.200 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.800 2 12 2 12s0 3.200.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800c.4-1.600.4-4.800.4-4.800s0-3.200-.4-4.800zM10 15V9l5.200 3z"/></svg>',
- tt:'<svg viewBox="0 0 24 24"><path d="M16.500 2h-3.200v12.300a2.800 2.800 0 1 1-2.800-2.800c.3 0 .6 0 .8.100V8.300a6 6 0 1 0 5.200 5.900V8.700a7.200 7.200 0 0 0 4.200 1.300V6.800c-2.300 0-4.200-1.900-4.200-4.800z"/></svg>',
- ig:'<svg viewBox="0 0 24 24"><path d="M7.500 2h9A5.500 5.500 0 0 1 22 7.500v9a5.500 5.500 0 0 1-5.500 5.500h-9A5.500 5.500 0 0 1 2 16.500v-9A5.500 5.500 0 0 1 7.500 2zm0 2A3.500 3.500 0 0 0 4 7.500v9A3.500 3.500 0 0 0 7.500 20h9a3.500 3.500 0 0 0 3.500-3.500v-9A3.500 3.500 0 0 0 16.500 4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.300-3.300a1.200 1.200 0 1 1 0 2.400 1.200 1.200 0 0 1 0-2.400z"/></svg>',
- home:'<svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z"/></svg>'};
-const USER='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.200"/><path d="M4 20c0-4 3.600-6.500 8-6.500s8 2.500 8 6.500z"/></svg>';
-const CH='<svg class="chev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>';
-const P={ig:["انستغرام","https://www.instagram.com/"],tt:["تيك توك","https://www.tiktok.com/@"],yt:["يوتيوب","https://www.youtube.com/@"],fb:["فيسبوك","https://www.facebook.com/"]};
-const D=[
-{n:"علي محمد",ig:"alakhbary1 alakhbary2 alakhbary3",tt:"alakhbary1 alakhbary2 alakhbary313",yt:"alakhbary1 alakhbary2 alakhbary3",fb:"share/1K9SKJbK1S/ share/18kFKonb9A/ share/1FMKGoQEW3/"},
-{n:"ابو الجواد",yt:"akhbary-313 akhbary2 akhbary21 Akhbary78",tt:"akhbary2 akhbary6 akhbary4 akhbary3 akhbary5",ig:"akhbary2"},
-{n:"المولى لعلي",ig:"akhbari_new akhbari2_new akhbari1_new",tt:"akhbari_new m_8urd b7r_al_anoar"},
-{n:"تقي الاخباري",ig:"srt_600g k5._gt",tt:"fbi._9110 313ed94 a313.z3 313ta_2 911_oli1 fm9_313_"},
-{n:"ابو يعقوب",tt:"user7617454882439 dymw01lwtsqy user1879363224222",ig:"the_awaited_100 elk.5821106 zechariah_son_of_adam_313"},
-{n:"لاكويلا",ig:"ali.shmre313 sr.3.e",tt:"mahod313 alijdd313 saedraes313",yt:"mahod313"},
-{n:"حسن",yt:"rih. hasn215 dlt_434",tt:"rih_.215 100i1i001 1i0i_i0i1",ig:"hasn30456 jarrar_army great_army1333",fb:"share/1BKzK4eHvs/"},
-{n:"ابو يحيى الواسطي",ig:"akhbari236 llama.3044935 glock19_313",yt:"akhbari-l4d judud313 akhbbarii313",tt:"akhbari_jadid3133 glock19_313 akhbari.jaddid313"},
-{n:"خادم هذا الأمر",ig:"armadillo.14381526 owl.46755536 badger.1319733 alsahraa2026 khay_bar313 althawra313 judud313 the_end313313 almumahdoon313",tt:"atalisune ruruuiui8 fhg3p",yt:"aliali-j1f2d atalisune9581 toleman5931",fb:"share/1AjEqMYEiB/ share/19jw6TrLwz/ share/19KumeuEKk/ share/18t2g9KdaR/ share/1G3fsH7nQ4/ share/1Ax63pThoY/"},
-{n:"موارب ابو صامد",yt:"ss9090opa channel/UCYxzz9IGZLmifAyuy82uDiw jsgssw"},
-{n:"ابوذر الممهد للنقمة",ig:"platypus.4327206 reindeer.82469592 camel.75394954"},
-{n:"مهدي الاسدي",tt:"end.of.world22 world.end991",ig:"endow313 worldend218",yt:"enoofworld2 worldend-d8p"},
-{n:"عبدعلي نسر الصحراء",yt:"akpareakpare ya_mahde73 channel/UC-ufGmqQhD4YzNKfwfSX9rw channel/UC0h17GRKpmMoHDk8tBPeFpg",ig:"ya_mahde_27",tt:"ya_ali_772"},
-{n:"رسول منير",yt:"نسورالمنهج313 user-jn5ve8rn2w",ig:"313rasol313 313godsproof313",tt:"nosousyyndq nosoukhirec"},
-{n:"محمد",fb:"tamrr333000 profile.php?id=61591222427787 mhassn771377",yt:"mohameddd-m7p mohamedalaa-s8w mohammed-d7t2z",tt:"user385665200 v_m..3 maty29359",ig:"penguin.5319341 elephant.22998524 quail.4774220"},
-{n:"ابا مهدي المهاجر",tt:"aahdelmontazar amjadamal86 ansar_alqaem313",ig:"aahdelmontazar ansar.alqaem313 khaymat_alsaheb313"}
-];
-const url=(k,s)=>k==="yt"&&s.startsWith("channel/")?"https://www.youtube.com/"+s:P[k][1]+encodeURI(s);
-const label=(k,s)=>s.startsWith("share/")?"رابط "+P[k][0]:s.startsWith("channel/")?"قناة يوتيوب":"@"+s.replace("profile.php?id=","id:");
-let f="all";
-const list=document.getElementById("list"),bar=document.getElementById("bar");
-[["fb"],["yt"],["home"],["tt"],["ig"]].forEach(([k])=>{
- const b=document.createElement("button");b.dataset.k=k;b.innerHTML=IC[k];b.setAttribute("aria-label",k==="home"?"الكل":P[k][0]);
- if(k==="home")b.className="home on";
- b.onclick=()=>{f=k==="home"?"all":(f===k?"all":k);render()};bar.appendChild(b)});
-function render(){
- [...bar.children].forEach(b=>b.classList.toggle("on",(f==="all"&&b.dataset.k==="home")||b.dataset.k===f));
- list.innerHTML="";
- const keys=f==="all"?Object.keys(P):[f];let n=0;
- D.forEach(p=>{
-  const sec=keys.filter(k=>p[k]).map(k=>[k,p[k].split(" ")]);
-  if(!sec.length)return;n++;
-  const cnt=sec.reduce((a,x)=>a+x[1].length,0);
-  const it=document.createElement("div");it.className="item";
-  it.innerHTML='<button class="head"><span class="av">'+USER+'</span><span class="nm">'+p.n+'</span><span class="bd">'+cnt+'</span>'+CH+'</button>';
-  const pn=document.createElement("div");pn.className="panel";
-  sec.forEach(([k,arr])=>{
-   const d=document.createElement("div");d.className="sec";
-   d.innerHTML="<b>"+IC[k]+P[k][0]+"</b>";
-   const l=document.createElement("div");l.className="links";
-   arr.forEach(x=>{const a=document.createElement("a");a.href=url(k,x);a.target="_blank";a.rel="noopener noreferrer";a.textContent=label(k,x);l.appendChild(a)});
-   d.appendChild(l);pn.appendChild(d)});
-  it.appendChild(pn);
-  it.querySelector(".head").onclick=()=>it.classList.toggle("open");
-  list.appendChild(it)});
- if(!n)list.innerHTML='<div class="empty">لا توجد حسابات</div>'}
-render();
+    const platformsDef = [
+        { id: 'instagram', name: 'انستغرام', icon: 'fa-brands fa-instagram', arabic: 'إنستغرام' },
+        { id: 'tiktok', name: 'تيك توك', icon: 'fa-brands fa-tiktok', arabic: 'تيكتوك' },
+        { id: 'youtube', name: 'يوتيوب', icon: 'fa-brands fa-youtube', arabic: 'يوتيوب' },
+        { id: 'facebook', name: 'فيسبوك', icon: 'fa-brands fa-facebook-f', arabic: 'فيسبوك' }
+    ];
+
+    const navPlatforms = ['facebook', 'youtube', 'home', 'tiktok', 'instagram'];
+    
+    /* =========================================================================
+       STREAMING_CHUNK: إدراج كافة حسابات الأعضاء بدقة متناهية من الملف المرفق
+       ========================================================================= */
+    const profiles = [
+        {
+            id: "1",
+            name: "علي محمد",
+            username: "",
+            links: [
+                { id: "p1-l1", platform: "instagram", url: "https://www.instagram.com/alakhbary1" },
+                { id: "p1-l2", platform: "instagram", url: "https://www.instagram.com/alakhbary2" },
+                { id: "p1-l3", platform: "instagram", url: "https://www.instagram.com/alakhbary3" },
+                { id: "p1-l4", platform: "tiktok", url: "https://www.tiktok.com/@alakhbary1" },
+                { id: "p1-l5", platform: "tiktok", url: "https://www.tiktok.com/@alakhbary2" },
+                { id: "p1-l6", platform: "tiktok", url: "https://www.tiktok.com/@alakhbary313" },
+                { id: "p1-l7", platform: "youtube", url: "https://www.youtube.com/@alakhbary1" },
+                { id: "p1-l8", platform: "youtube", url: "https://www.youtube.com/@alakhbary2" },
+                { id: "p1-l9", platform: "youtube", url: "https://www.youtube.com/@alakhbary3" },
+                { id: "p1-l10", platform: "facebook", url: "https://www.facebook.com/share/1K9SKJbK1S/" },
+                { id: "p1-l11", platform: "facebook", url: "https://www.facebook.com/share/18kFKonb9A/" },
+                { id: "p1-l12", platform: "facebook", url: "https://www.facebook.com/share/1FMKGoQEW3/" }
+            ]
+        },
+        {
+            id: "2",
+            name: "ابو الجواد",
+            username: "",
+            links: [
+                { id: "p2-l1", platform: "instagram", url: "https://www.instagram.com/akhbary2" },
+                { id: "p2-l2", platform: "tiktok", url: "https://www.tiktok.com/@akhbary2" },
+                { id: "p2-l3", platform: "tiktok", url: "https://www.tiktok.com/@akhbary6" },
+                { id: "p2-l4", platform: "tiktok", url: "https://www.tiktok.com/@akhbary4" },
+                { id: "p2-l5", platform: "tiktok", url: "https://www.tiktok.com/@akhbary3" },
+                { id: "p2-l6", platform: "tiktok", url: "https://www.tiktok.com/@akhbary5" },
+                { id: "p2-l7", platform: "youtube", url: "https://www.youtube.com/@akhbary-313" },
+                { id: "p2-l8", platform: "youtube", url: "https://www.youtube.com/@akhbary2" },
+                { id: "p2-l9", platform: "youtube", url: "https://www.youtube.com/@akhbary21" },
+                { id: "p2-l10", platform: "youtube", url: "https://www.youtube.com/@Akhbary78" }
+            ]
+        },
+        {
+            id: "3",
+            name: "المولى لعلي",
+            username: "",
+            links: [
+                { id: "p3-l1", platform: "instagram", url: "https://www.instagram.com/akhbari_new" },
+                { id: "p3-l2", platform: "instagram", url: "https://www.instagram.com/akhbari2_new" },
+                { id: "p3-l3", platform: "instagram", url: "https://www.instagram.com/akhbari1_new" },
+                { id: "p3-l4", platform: "tiktok", url: "https://www.tiktok.com/@akhbari_new" },
+                { id: "p3-l5", platform: "tiktok", url: "https://www.tiktok.com/@m_8urd" },
+                { id: "p3-l6", platform: "tiktok", url: "https://www.tiktok.com/@b7r_al_anoar" }
+            ]
+        },
+        {
+            id: "4",
+            name: "تقي الاخباري",
+            username: "",
+            links: [
+                { id: "p4-l1", platform: "instagram", url: "https://www.instagram.com/srt_600g" },
+                { id: "p4-l2", platform: "instagram", url: "https://www.instagram.com/k5._gt" },
+                { id: "p4-l3", platform: "tiktok", url: "https://www.tiktok.com/@fbi._9110" },
+                { id: "p4-l4", platform: "tiktok", url: "https://www.tiktok.com/@313ed94" },
+                { id: "p4-l5", platform: "tiktok", url: "https://www.tiktok.com/@a313.z3" },
+                { id: "p4-l6", platform: "tiktok", url: "https://www.tiktok.com/@313ta_2" },
+                { id: "p4-l7", platform: "tiktok", url: "https://www.tiktok.com/@911_oli1" },
+                { id: "p4-l8", platform: "tiktok", url: "https://www.tiktok.com/@fm9_313_" }
+            ]
+        },
+        {
+            id: "5",
+            name: "ابو يعقوب",
+            username: "",
+            links: [
+                { id: "p5-l1", platform: "instagram", url: "https://www.instagram.com/the_awaited_100" },
+                { id: "p5-l2", platform: "instagram", url: "https://www.instagram.com/elk.5821106" },
+                { id: "p5-l3", platform: "instagram", url: "https://www.instagram.com/zechariah_son_of_adam_313" },
+                { id: "p5-l4", platform: "tiktok", url: "https://www.tiktok.com/@user7617454882439" },
+                { id: "p5-l5", platform: "tiktok", url: "https://www.tiktok.com/@dymw01lwtsqy" },
+                { id: "p5-l6", platform: "tiktok", url: "https://www.tiktok.com/@user1879363224222" }
+            ]
+        },
+        {
+            id: "6",
+            name: "لاكويلا",
+            username: "",
+            links: [
+                { id: "p6-l1", platform: "instagram", url: "https://www.instagram.com/ali.shmre313" },
+                { id: "p6-l2", platform: "instagram", url: "https://www.instagram.com/sr.3.e" },
+                { id: "p6-l3", platform: "tiktok", url: "https://www.tiktok.com/@mahod313" },
+                { id: "p6-l4", platform: "tiktok", url: "https://www.tiktok.com/@alijdd313" },
+                { id: "p6-l5", platform: "tiktok", url: "https://www.tiktok.com/@saedraes313" },
+                { id: "p6-l6", platform: "youtube", url: "https://www.youtube.com/@mahod313" }
+            ]
+        },
+        {
+            id: "7",
+            name: "حسن",
+            username: "",
+            links: [
+                { id: "p7-l1", platform: "instagram", url: "https://www.instagram.com/hasn30456" },
+                { id: "p7-l2", platform: "instagram", url: "https://www.instagram.com/jarrar_army" },
+                { id: "p7-l3", platform: "instagram", url: "https://www.instagram.com/great_army1333" },
+                { id: "p7-l4", platform: "tiktok", url: "https://www.tiktok.com/@rih_.215" },
+                { id: "p7-l5", platform: "tiktok", url: "https://www.tiktok.com/@100i1i001" },
+                { id: "p7-l6", platform: "tiktok", url: "https://www.tiktok.com/@1i0i_i0i1" },
+                { id: "p7-l7", platform: "youtube", url: "https://www.youtube.com/@rih." },
+                { id: "p7-l8", platform: "youtube", url: "https://www.youtube.com/@hasn215" },
+                { id: "p7-l9", platform: "youtube", url: "https://www.youtube.com/@dlt_434" },
+                { id: "p7-l10", platform: "facebook", url: "https://www.facebook.com/share/1BKzK4eHvs/" }
+            ]
+        },
+        {
+            id: "8",
+            name: "ابو يحيى الواسطي",
+            username: "",
+            links: [
+                { id: "p8-l1", platform: "instagram", url: "https://www.instagram.com/akhbari236" },
+                { id: "p8-l2", platform: "instagram", url: "https://www.instagram.com/llama.3044935" },
+                { id: "p8-l3", platform: "instagram", url: "https://www.instagram.com/glock19_313" },
+                { id: "p8-l4", platform: "tiktok", url: "https://www.tiktok.com/@akhbari_jadid3133" },
+                { id: "p8-l5", platform: "tiktok", url: "https://www.tiktok.com/@glock19_313" },
+                { id: "p8-l6", platform: "tiktok", url: "https://www.tiktok.com/@akhbari.jaddid313" },
+                { id: "p8-l7", platform: "youtube", url: "https://www.youtube.com/@akhbari-l4d" },
+                { id: "p8-l8", platform: "youtube", url: "https://www.youtube.com/@judud313" },
+                { id: "p8-l9", platform: "youtube", url: "https://www.youtube.com/@akhbbarii313" }
+            ]
+        },
+        {
+            id: "9",
+            name: "خادم هذا الأمر",
+            username: "",
+            links: [
+                { id: "p9-l1", platform: "instagram", url: "https://www.instagram.com/armadillo.14381526" },
+                { id: "p9-l2", platform: "instagram", url: "https://www.instagram.com/owl.46755536" },
+                { id: "p9-l3", platform: "instagram", url: "https://www.instagram.com/badger.1319733" },
+                { id: "p9-l4", platform: "instagram", url: "https://www.instagram.com/alsahraa2026" },
+                { id: "p9-l5", platform: "instagram", url: "https://www.instagram.com/khay_bar313" },
+                { id: "p9-l6", platform: "instagram", url: "https://www.instagram.com/althawra313" },
+                { id: "p9-l7", platform: "instagram", url: "https://www.instagram.com/judud313" },
+                { id: "p9-l8", platform: "instagram", url: "https://www.instagram.com/the_end313313" },
+                { id: "p9-l9", platform: "instagram", url: "https://www.instagram.com/almumahdoon313" },
+                { id: "p9-l10", platform: "tiktok", url: "https://www.tiktok.com/@atalisune" },
+                { id: "p9-l11", platform: "tiktok", url: "https://www.tiktok.com/@ruruuiui8" },
+                { id: "p9-l12", platform: "tiktok", url: "https://www.tiktok.com/@fhg3p" },
+                { id: "p9-l13", platform: "youtube", url: "https://www.youtube.com/@aliali-j1f2d" },
+                { id: "p9-l14", platform: "youtube", url: "https://www.youtube.com/@atalisune9581" },
+                { id: "p9-l15", platform: "youtube", url: "https://www.youtube.com/@toleman5931" },
+                { id: "p9-l16", platform: "facebook", url: "https://www.facebook.com/share/1AjEqMYEiB/" },
+                { id: "p9-l17", platform: "facebook", url: "https://www.facebook.com/share/19jw6TrLwz/" },
+                { id: "p9-l18", platform: "facebook", url: "https://www.facebook.com/share/19KumeuEKk/" },
+                { id: "p9-l19", platform: "facebook", url: "https://www.facebook.com/share/18t2g9KdaR/" },
+                { id: "p9-l20", platform: "facebook", url: "https://www.facebook.com/share/1G3fsH7nQ4/" },
+                { id: "p9-l21", platform: "facebook", url: "https://www.facebook.com/share/1Ax63pThoY/" }
+            ]
+        },
+        {
+            id: "10",
+            name: "موارب ابو صامد",
+            username: "",
+            links: [
+                { id: "p10-l1", platform: "youtube", url: "https://www.youtube.com/@ss9090opa" },
+                { id: "p10-l2", platform: "youtube", url: "https://www.youtube.com/channel/UCYxzz9IGZLmifAyuy82uDiw" },
+                { id: "p10-l3", platform: "youtube", url: "https://www.youtube.com/@jsgssw" }
+            ]
+        },
+        {
+            id: "11",
+            name: "ابوذر الممهد للنقمة",
+            username: "",
+            links: [
+                { id: "p11-l1", platform: "instagram", url: "https://www.instagram.com/platypus.4327206" },
+                { id: "p11-l2", platform: "instagram", url: "https://www.instagram.com/reindeer.82469592" },
+                { id: "p11-l3", platform: "instagram", url: "https://www.instagram.com/camel.75394954" }
+            ]
+        },
+        {
+            id: "12",
+            name: "مهدي الاسدي",
+            username: "",
+            links: [
+                { id: "p12-l1", platform: "instagram", url: "https://www.instagram.com/endow313" },
+                { id: "p12-l2", platform: "instagram", url: "https://www.instagram.com/worldend218" },
+                { id: "p12-l3", platform: "tiktok", url: "https://www.tiktok.com/@end.of.world22" },
+                { id: "p12-l4", platform: "tiktok", url: "https://www.tiktok.com/@world.end991" },
+                { id: "p12-l5", platform: "youtube", url: "https://www.youtube.com/@enoofworld2" },
+                { id: "p12-l6", platform: "youtube", url: "https://www.youtube.com/@worldend-d8p" }
+            ]
+        },
+        {
+            id: "13",
+            name: "عبدعلي نسر الصحراء",
+            username: "",
+            links: [
+                { id: "p13-l1", platform: "instagram", url: "https://www.instagram.com/ya_mahde_27" },
+                { id: "p13-l2", platform: "tiktok", url: "https://www.tiktok.com/@ya_ali_772" },
+                { id: "p13-l3", platform: "youtube", url: "https://www.youtube.com/@akpareakpare" },
+                { id: "p13-l4", platform: "youtube", url: "https://www.youtube.com/@ya_mahde73" },
+                { id: "p13-l5", platform: "youtube", url: "https://www.youtube.com/channel/UC-ufGmqQhD4YzNKfwfSX9rw" },
+                { id: "p13-l6", platform: "youtube", url: "https://www.youtube.com/channel/UC0h17GRKpmMoHDk8tBPeFpg" }
+            ]
+        },
+        {
+            id: "14",
+            name: "رسول منير",
+            username: "",
+            links: [
+                { id: "p14-l1", platform: "instagram", url: "https://www.instagram.com/313rasol313" },
+                { id: "p14-l2", platform: "instagram", url: "https://www.instagram.com/313godsproof313" },
+                { id: "p14-l3", platform: "tiktok", url: "https://www.tiktok.com/@nosousyyndq" },
+                { id: "p14-l4", platform: "tiktok", url: "https://www.tiktok.com/@nosoukhirec" },
+                { id: "p14-l5", platform: "youtube", url: "https://www.youtube.com/@%D9%86%D8%B3%D9%88%D8%B1%D8%A7%D9%84%D9%85%D9%86%D9%87%D8%AC313" },
+                { id: "p14-l6", platform: "youtube", url: "https://www.youtube.com/@user-jn5ve8rn2w" }
+            ]
+        },
+        {
+            id: "15",
+            name: "محمد",
+            username: "",
+            links: [
+                { id: "p15-l1", platform: "instagram", url: "https://www.instagram.com/penguin.5319341" },
+                { id: "p15-l2", platform: "instagram", url: "https://www.instagram.com/elephant.22998524" },
+                { id: "p15-l3", platform: "instagram", url: "https://www.instagram.com/quail.4774220" },
+                { id: "p15-l4", platform: "tiktok", url: "https://www.tiktok.com/@user385665200" },
+                { id: "p15-l5", platform: "tiktok", url: "https://www.tiktok.com/@v_m..3" },
+                { id: "p15-l6", platform: "tiktok", url: "https://www.tiktok.com/@maty29359" },
+                { id: "p15-l7", platform: "youtube", url: "https://www.youtube.com/@mohameddd-m7p" },
+                { id: "p15-l8", platform: "youtube", url: "https://www.youtube.com/@mohamedalaa-s8w" },
+                { id: "p15-l9", platform: "youtube", url: "https://www.youtube.com/@mohammed-d7t2z" },
+                { id: "p15-l10", platform: "facebook", url: "https://www.facebook.com/tamrr333000" },
+                { id: "p15-l11", platform: "facebook", url: "https://www.facebook.com/profile.php?id=61591222427787" },
+                { id: "p15-l12", platform: "facebook", url: "https://www.facebook.com/mhassn771377" }
+            ]
+        },
+        {
+            id: "16",
+            name: "ابا مهدي المهاجر",
+            username: "",
+            links: [
+                { id: "p16-l1", platform: "instagram", url: "https://www.instagram.com/aahdelmontazar" },
+                { id: "p16-l2", platform: "instagram", url: "https://www.instagram.com/ansar.alqaem313" },
+                { id: "p16-l3", platform: "instagram", url: "https://www.instagram.com/khaymat_alsaheb313" },
+                { id: "p16-l4", platform: "tiktok", url: "https://www.tiktok.com/@aahdelmontazar" },
+                { id: "p16-l5", platform: "tiktok", url: "https://www.tiktok.com/@amjadamal86" },
+                { id: "p16-l6", platform: "tiktok", url: "https://www.tiktok.com/@ansar_alqaem313" }
+            ]
+        }
+    ];
+
+    window.onload = () => {
+        initNavigation();
+        openNavView('home');
+        renderNames();
+    };
+
+    function initNavigation() {
+        const listItems = document.querySelectorAll('.list');
+        const indicatorCircle = document.querySelector('.indicator-circle');
+        const navContainer = document.getElementById('nav-container');
+
+        function updateNavPosition(item) {
+            const containerRect = navContainer.getBoundingClientRect();
+            const itemRect = item.getBoundingClientRect();
+            const centerX = (itemRect.left - containerRect.left) + (itemRect.width / 2);
+            navContainer.style.setProperty('--active-x', `${centerX}px`);
+        }
+
+        setTimeout(() => {
+            const activeItem = document.querySelector('.list.active');
+            if(activeItem) updateNavPosition(activeItem);
+        }, 50);
+
+        window.addEventListener('resize', () => {
+            const activeItem = document.querySelector('.list.active');
+            if(activeItem) updateNavPosition(activeItem);
+        });
+
+        listItems.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                if (item.classList.contains('active')) return;
+
+                listItems.forEach(li => li.classList.remove('active'));
+                item.classList.add('active');
+
+                updateNavPosition(item);
+
+                indicatorCircle.classList.remove('jumping');
+                void indicatorCircle.offsetWidth;
+                indicatorCircle.classList.add('jumping');
+
+                const index = parseInt(item.getAttribute('data-index'));
+                const selectedPlatform = navPlatforms[index];
+                openNavView(selectedPlatform);
+            });
+        });
+    }
+
+    function openNavView(platform) {
+        document.getElementById('profile-view').classList.add('hidden');
+        currentOpenProfileId = null;
+
+        if (platform === 'home') {
+            document.getElementById('platform-view').classList.add('hidden');
+            document.getElementById('main-view').classList.remove('hidden');
+            renderNames();
+        } else {
+            document.getElementById('main-view').classList.add('hidden');
+            document.getElementById('platform-view').classList.remove('hidden');
+            renderPlatformView(platform);
+        }
+    }
+
+    function renderNames() {
+        const container = document.getElementById('names-container');
+        const emptyState = document.getElementById('empty-state');
+
+        container.innerHTML = '';
+
+        if (profiles.length === 0) {
+            emptyState.classList.remove('hidden');
+        } else {
+            emptyState.classList.add('hidden');
+
+            profiles.forEach(profile => {
+                const card = document.createElement('div');
+                // إضافة حافة يمنى مضيئة كأحد عناصر تحسين التصميم البصري
+                card.className = 'glass-btn w-full h-16 rounded-full flex items-center px-2 cursor-pointer group transition-all duration-300 border-r-4 border-red-500/80';
+                card.onclick = () => openProfile(profile.id);
+
+                card.innerHTML = `
+                    <div class="w-12 h-12 rounded-full border bg-gradient-to-tr from-red-600/20 to-red-400/10 border-red-500/40 shadow-[0_0_15px_rgba(239,68,68,0.2)] flex items-center justify-center text-lg shrink-0 z-10">
+                        <i class="fa-solid fa-user text-white opacity-90"></i>
+                    </div>
+                    <div class="flex-1 flex items-center mr-3 truncate z-10">
+                        <span class="font-bold text-white text-base truncate text-shadow">${profile.name}</span>
+                    </div>
+                    <div class="flex items-center gap-1 shrink-0 z-20">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-white/40 group-hover:text-white/80 transition-colors ml-1">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    }
+
+    // فتح الرابط في نافذة جديدة
+    function handleLinkClick(url) {
+        const finalUrl = url.startsWith('http') ? url : 'https://' + url;
+        window.open(finalUrl, '_blank');
+    }
+
+    function renderPlatformView(platformId) {
+        const container = document.getElementById('platform-accounts-container');
+        const emptyState = document.getElementById('platform-empty-state');
+        const titleEl = document.getElementById('platform-title');
+
+        const platformInfo = platformsDef.find(p => p.id === platformId);
+        if(platformInfo) titleEl.innerHTML = `<i class="${platformInfo.icon} mr-2 text-white"></i> حسابات ${platformInfo.name}`;
+
+        container.innerHTML = '';
+        let hasAnyLinks = false;
+
+        profiles.forEach(profile => {
+            const platformLinks = profile.links.filter(l => l.platform === platformId && l.url.trim() !== '');
+
+            if (platformLinks.length > 0) {
+                hasAnyLinks = true;
+
+                // تحسين تصميم البوكس المجمع للحسابات ببريق ناعم
+                const profileGroup = document.createElement('div');
+                profileGroup.className = 'flex flex-col gap-2.5 w-full mb-3 bg-white/[0.03] backdrop-blur-md p-4 rounded-3xl border border-white/10 shadow-lg';
+
+                // حل مشكلة عدم وضوح الاسم الصغير بجعله باللون الأبيض الساطع مع حافة يمنى أنيقة
+                const nameLabel = document.createElement('div');
+                nameLabel.className = 'text-xs text-white/95 font-extrabold px-2 mb-1 border-r-2 border-[#ef4444] pr-1.5 tracking-wide';
+                nameLabel.textContent = profile.name;
+                profileGroup.appendChild(nameLabel);
+
+                platformLinks.forEach((linkObj, idx) => {
+                    const displayName = platformLinks.length > 1 ? `${platformInfo.name} ${idx + 1}` : platformInfo.name;
+
+                    const card = document.createElement('div');
+                    card.className = 'glass-btn w-full h-14 rounded-full flex items-center px-2 cursor-pointer relative justify-between';
+                    card.onclick = () => handleLinkClick(linkObj.url);
+
+                    card.innerHTML = `
+                        <div class="flex items-center truncate">
+                            <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 ml-3">
+                                <i class="${platformInfo.icon} text-white text-lg"></i>
+                            </div>
+                            <div class="truncate text-white/90 font-medium text-sm">
+                                ${displayName}
+                            </div>
+                        </div>
+                        <div class="flex items-center pl-3 text-white/50 text-xs shrink-0">
+                            زيارة الحساب <i class="fa-solid fa-arrow-up-right-from-square mr-1.5 text-[10px]"></i>
+                        </div>
+                    `;
+                    profileGroup.appendChild(card);
+                });
+
+                container.appendChild(profileGroup);
+            }
+        });
+
+        if (!hasAnyLinks) {
+            emptyState.classList.remove('hidden');
+        } else {
+            emptyState.classList.add('hidden');
+        }
+    }
+
+    let currentOpenProfileId = null;
+
+    function openProfile(id) {
+        currentOpenProfileId = id;
+        const profile = profiles.find(p => p.id === id);
+        if (!profile) return;
+
+        document.getElementById('main-view').classList.add('hidden');
+        document.getElementById('platform-view').classList.add('hidden');
+        const profileView = document.getElementById('profile-view');
+        profileView.classList.remove('hidden');
+
+        document.getElementById('profile-name-title').textContent = profile.name;
+        renderProfileLinks(profile);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeProfile() {
+        currentOpenProfileId = null;
+        document.getElementById('profile-view').classList.add('hidden');
+
+        const activeNav = document.querySelector('.list.active');
+        if (activeNav) {
+            const idx = parseInt(activeNav.getAttribute('data-index'));
+            const platform = navPlatforms[idx];
+            if (platform === 'home') {
+                document.getElementById('main-view').classList.remove('hidden');
+            } else {
+                document.getElementById('platform-view').classList.remove('hidden');
+                renderPlatformView(platform);
+            }
+        } else {
+            document.getElementById('main-view').classList.remove('hidden');
+        }
+    }
+
+    // عرض الروابط داخل ملف العضو
+    function renderProfileLinks(profile) {
+        const container = document.getElementById('links-container');
+        container.innerHTML = '';
+
+        const platformCounts = {};
+        profile.links.forEach(l => {
+            if(l.url.trim()) platformCounts[l.platform] = (platformCounts[l.platform] || 0) + 1;
+        });
+
+        const currentCounters = {};
+        let hasLinks = false;
+
+        if (profile.username) {
+            const userCard = document.createElement('div');
+            userCard.className = 'glass-btn w-full h-12 rounded-full flex items-center px-4 mb-4 justify-center border border-[#ef4444]/20';
+            userCard.innerHTML = `<span class="text-white/80 text-sm font-medium">اليوزر: <span class="font-bold text-white ml-1 text-base tracking-wider" dir="ltr">@${profile.username.replace('@','')}</span></span>`;
+            container.appendChild(userCard);
+        }
+
+        profile.links.forEach((linkObj) => {
+            if (!linkObj.url.trim()) return;
+            hasLinks = true;
+
+            const platformInfo = platformsDef.find(p => p.id === linkObj.platform);
+            const pIcon = platformInfo ? platformInfo.icon : 'fa-solid fa-link';
+            const pName = platformInfo ? platformInfo.name : 'رابط';
+
+            let displayName = pName;
+            if (platformCounts[linkObj.platform] > 1) {
+                currentCounters[linkObj.platform] = (currentCounters[linkObj.platform] || 0) + 1;
+                displayName += ` ${currentCounters[linkObj.platform]}`;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'glass-btn w-full h-14 rounded-full flex items-center px-2 cursor-pointer relative justify-between transition-transform duration-200';
+            card.onclick = () => handleLinkClick(linkObj.url);
+
+            card.innerHTML = `
+                <div class="flex items-center truncate">
+                    <div class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 ml-3">
+                        <i class="${pIcon} text-white text-lg"></i>
+                    </div>
+                    <div class="truncate text-white/90 font-medium text-sm">
+                        ${displayName}
+                    </div>
+                </div>
+                <div class="flex items-center pl-3 text-white/50 text-xs shrink-0">
+                    زيارة الرابط <i class="fa-solid fa-arrow-up-right-from-square mr-1.5 text-[10px]"></i>
+                </div>
+            `;
+            container.appendChild(card);
+        });
+
+        if (!hasLinks) {
+            container.innerHTML += '<p class="text-center text-sm text-white opacity-60 py-4">لم يتم إضافة روابط لهذا العضو بعد.</p>';
+        }
+    }
 </script>
 </body>
 </html>
