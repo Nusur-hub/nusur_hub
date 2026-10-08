@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>حسابات أعضاء هيئة نسور المنهج</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--r1:#2a0505;--r2:#7a0000;--r3:#e8423f;--tx:#fff;--glass:rgba(255,255,255,.08);--ln:rgba(255,255,255,.28);box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;min-height:100vh;color:var(--tx);font-family:"Cairo","Segoe UI",Tahoma,Arial,sans-serif;background:#7a0000 radial-gradient(circle at 85% 28%,#e8423f 0,#b01a1a 22%,#7a0000 50%,#2a0505 100%) fixed}
+.wrap{max-width:440px;margin:auto;padding:18px 16px 130px}
+.title{background:var(--glass);border:1px solid var(--ln);border-radius:40px;padding:12px 16px;text-align:center;font-weight:700;font-size:1.05rem;text-shadow:0 1px 4px rgba(0,0,0,.45);margin-bottom:22px;backdrop-filter:blur(6px)}
+.item{background:linear-gradient(90deg,rgba(255,255,255,.07),rgba(255,255,255,.12));border:1px solid var(--ln);border-radius:36px;margin-bottom:12px;box-shadow:0 0 0 2px rgba(232,66,63,.28),0 6px 18px rgba(0,0,0,.25);overflow:hidden;transition:border-radius .25s}
+.head{display:flex;align-items:center;gap:12px;width:100%;padding:7px 8px 7px 16px;background:none;border:0;color:inherit;font:inherit;cursor:pointer;text-align:right}
+.av{width:48px;height:48px;flex:none;border-radius:50%;border:1px solid var(--ln);background:rgba(255,255,255,.1);display:grid;place-items:center}
+.av svg{width:22px;height:22px;fill:#fff}
+.nm{flex:1;font-weight:700;font-size:1rem;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.bd{font-size:.75rem;background:rgba(0,0,0,.25);border-radius:99px;padding:1px 9px;font-weight:500}
+.chev{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.75;transition:transform .25s}
+.item.open{border-radius:28px}
+.item.open .chev{transform:rotate(-90deg)}
+.panel{display:none;padding:2px 16px 16px}
+.item.open .panel{display:block}
+.sec{margin-top:10px}
+.sec b{display:flex;align-items:center;gap:6px;font-size:.8rem;opacity:.85;margin-bottom:6px;font-weight:500}
+.sec b svg{width:15px;height:15px}
+.links{display:flex;flex-direction:column;gap:6px}
+.links a{display:block;direction:ltr;text-align:left;padding:8px 14px;border-radius:99px;background:rgba(0,0,0,.22);border:1px solid rgba(255,255,255,.18);color:#fff;text-decoration:none;font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.links a:active{background:rgba(255,255,255,.2)}
+.empty{text-align:center;opacity:.8;padding:30px}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px);pointer-events:none}
+.bar{pointer-events:auto;direction:ltr;width:min(448px,calc(100% - 24px));height:68px;display:flex;align-items:center;justify-content:space-around;background:rgba(90,8,8,.88);backdrop-filter:blur(10px);border:1px solid var(--ln);border-bottom:0;border-radius:36px 36px 0 0;position:relative;padding:0 6px}
+.bar button{background:none;border:0;padding:10px;cursor:pointer;opacity:.55;transition:opacity .2s,transform .2s}
+.bar button svg{width:26px;height:26px;fill:#fff;display:block}
+.bar button.on{opacity:1;transform:translateY(-2px)}
+.bar .home{width:50px;height:50px;border-radius:50%;margin-top:-34px;background:linear-gradient(145deg,#b02020,#6a0808);border:3px solid rgba(255,255,255,.55);display:grid;place-items:center;padding:0;opacity:1;box-shadow:0 4px 14px rgba(0,0,0,.45)}
+.bar .home.on{box-shadow:0 0 0 3px rgba(255,255,255,.25),0 4px 14px rgba(0,0,0,.45)}
+.bar .home svg{width:24px;height:24px}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="title">حسابات أعضاء هيئة نسور المنهج</div><div id="list"></div></div>
+<nav><div class="bar" id="bar"></div></nav>
+<script>
+const IC={
+ fb:'<svg viewBox="0 0 24 24"><path d="M14 8V6.500c0-.700.200-1.100 1.200-1.100H17V2.200C16.700 2.100 15.700 2 14.600 2 12.100 2 10.400 3.500 10.400 6.200V8H8v3.500h2.400V22H14V11.500h2.700L17.100 8z"/></svg>',
+ yt:'<svg viewBox="0 0 24 24"><path d="M21.600 7.200a2.500 2.500 0 0 0-1.800-1.800C18.200 5 12 5 12 5s-6.200 0-7.800.4A2.500 2.500 0 0 0 2.400 7.200C2 8.800 2 12 2 12s0 3.200.4 4.800a2.500 2.500 0 0 0 1.800 1.800C5.800 19 12 19 12 19s6.200 0 7.800-.4a2.500 2.500 0 0 0 1.800-1.800c.4-1.600.4-4.800.4-4.800s0-3.200-.4-4.800zM10 15V9l5.200 3z"/></svg>',
+ tt:'<svg viewBox="0 0 24 24"><path d="M16.500 2h-3.200v12.300a2.800 2.800 0 1 1-2.800-2.800c.3 0 .6 0 .8.100V8.300a6 6 0 1 0 5.200 5.900V8.700a7.200 7.200 0 0 0 4.200 1.300V6.800c-2.300 0-4.200-1.900-4.200-4.800z"/></svg>',
+ ig:'<svg viewBox="0 0 24 24"><path d="M7.500 2h9A5.500 5.500 0 0 1 22 7.500v9a5.500 5.500 0 0 1-5.500 5.500h-9A5.500 5.500 0 0 1 2 16.500v-9A5.500 5.500 0 0 1 7.500 2zm0 2A3.500 3.500 0 0 0 4 7.500v9A3.500 3.500 0 0 0 7.500 20h9a3.500 3.500 0 0 0 3.500-3.500v-9A3.500 3.500 0 0 0 16.500 4zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.300-3.300a1.200 1.200 0 1 1 0 2.400 1.200 1.200 0 0 1 0-2.400z"/></svg>',
+ home:'<svg viewBox="0 0 24 24"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z"/></svg>'};
+const USER='<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.200"/><path d="M4 20c0-4 3.600-6.500 8-6.500s8 2.500 8 6.500z"/></svg>';
+const CH='<svg class="chev" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>';
+const P={ig:["انستغرام","https://www.instagram.com/"],tt:["تيك توك","https://www.tiktok.com/@"],yt:["يوتيوب","https://www.youtube.com/@"],fb:["فيسبوك","https://www.facebook.com/"]};
+const D=[
+{n:"علي محمد",ig:"alakhbary1 alakhbary2 alakhbary3",tt:"alakhbary1 alakhbary2 alakhbary313",yt:"alakhbary1 alakhbary2 alakhbary3",fb:"share/1K9SKJbK1S/ share/18kFKonb9A/ share/1FMKGoQEW3/"},
+{n:"ابو الجواد",yt:"akhbary-313 akhbary2 akhbary21 Akhbary78",tt:"akhbary2 akhbary6 akhbary4 akhbary3 akhbary5",ig:"akhbary2"},
+{n:"المولى لعلي",ig:"akhbari_new akhbari2_new akhbari1_new",tt:"akhbari_new m_8urd b7r_al_anoar"},
+{n:"تقي الاخباري",ig:"srt_600g k5._gt",tt:"fbi._9110 313ed94 a313.z3 313ta_2 911_oli1 fm9_313_"},
+{n:"ابو يعقوب",tt:"user7617454882439 dymw01lwtsqy user1879363224222",ig:"the_awaited_100 elk.5821106 zechariah_son_of_adam_313"},
+{n:"لاكويد",ig:"ali.shmre313 sr.3.e",tt:"mahod313 alijdd313 saedraes313",yt:"mahod313"},
+{n:"حسن",yt:"rih. hasn215 dlt_434",tt:"rih_.215 100i1i001 1i0i_i0i1",ig:"hasn30456 jarrar_army great_army1333",fb:"share/1BKzK4eHvs/"},
+{n:"ابو يحيى الواسطي",ig:"akhbari236 llama.3044935 glock19_313",yt:"akhbari-l4d judud313 akhbbarii313",tt:"akhbari_jadid3133 glock19_313 akhbari.jaddid313"},
+{n:"خادم هذا الأمر",ig:"armadillo.14381526 owl.46755536 badger.1319733 alsahraa2026 khay_bar313 althawra313 judud313 the_end313313 almumahdoon313",tt:"atalisune ruruuiui8 fhg3p",yt:"aliali-j1f2d atalisune9581 toleman5931",fb:"share/1AjEqMYEiB/ share/19jw6TrLwz/ share/19KumeuEKk/ share/18t2g9KdaR/ share/1G3fsH7nQ4/ share/1Ax63pThoY/"},
+{n:"موارب ابو صامد",yt:"ss9090opa channel/UCYxzz9IGZLmifAyuy82uDiw jsgssw"},
+{n:"ابوذر الممهد للنقمة",ig:"platypus.4327206 reindeer.82469592 camel.75394954"},
+{n:"مهدي الاسدي",tt:"end.of.world22 world.end991",ig:"endow313 worldend218",yt:"enoofworld2 worldend-d8p"},
+{n:"عبدعلي نسر الصحراء",yt:"akpareakpare ya_mahde73 channel/UC-ufGmqQhD4YzNKfwfSX9rw channel/UC0h17GRKpmMoHDk8tBPeFpg",ig:"ya_mahde_27",tt:"ya_ali_772"},
+{n:"رسول منير",yt:"نسورالمنهج313 user-jn5ve8rn2w",ig:"313rasol313 313godsproof313",tt:"nosousyyndq nosoukhirec"},
+{n:"محمد",fb:"tamrr333000 profile.php?id=61591222427787 mhassn771377",yt:"mohameddd-m7p mohamedalaa-s8w mohammed-d7t2z",tt:"user385665200 v_m..3 maty29359",ig:"penguin.5319341 elephant.22998524 quail.4774220"},
+{n:"ابا مهدي المهاجر",tt:"aahdelmontazar amjadamal86 ansar_alqaem313",ig:"aahdelmontazar ansar.alqaem313 khaymat_alsaheb313"}
+];
+const url=(k,s)=>k==="yt"&&s.startsWith("channel/")?"https://www.youtube.com/"+s:P[k][1]+encodeURI(s);
+const label=(k,s)=>s.startsWith("share/")?"رابط "+P[k][0]:s.startsWith("channel/")?"قناة يوتيوب":"@"+s.replace("profile.php?id=","id:");
+let f="all";
+const list=document.getElementById("list"),bar=document.getElementById("bar");
+[["fb"],["yt"],["home"],["tt"],["ig"]].forEach(([k])=>{
+ const b=document.createElement("button");b.dataset.k=k;b.innerHTML=IC[k];b.setAttribute("aria-label",k==="home"?"الكل":P[k][0]);
+ if(k==="home")b.className="home on";
+ b.onclick=()=>{f=k==="home"?"all":(f===k?"all":k);render()};bar.appendChild(b)});
+function render(){
+ [...bar.children].forEach(b=>b.classList.toggle("on",(f==="all"&&b.dataset.k==="home")||b.dataset.k===f));
+ list.innerHTML="";
+ const keys=f==="all"?Object.keys(P):[f];let n=0;
+ D.forEach(p=>{
+  const sec=keys.filter(k=>p[k]).map(k=>[k,p[k].split(" ")]);
+  if(!sec.length)return;n++;
+  const cnt=sec.reduce((a,x)=>a+x[1].length,0);
+  const it=document.createElement("div");it.className="item";
+  it.innerHTML='<button class="head"><span class="av">'+USER+'</span><span class="nm">'+p.n+'</span><span class="bd">'+cnt+'</span>'+CH+'</button>';
+  const pn=document.createElement("div");pn.className="panel";
+  sec.forEach(([k,arr])=>{
+   const d=document.createElement("div");d.className="sec";
+   d.innerHTML="<b>"+IC[k]+P[k][0]+"</b>";
+   const l=document.createElement("div");l.className="links";
+   arr.forEach(x=>{const a=document.createElement("a");a.href=url(k,x);a.target="_blank";a.rel="noopener noreferrer";a.textContent=label(k,x);l.appendChild(a)});
+   d.appendChild(l);pn.appendChild(d)});
+  it.appendChild(pn);
+  it.querySelector(".head").onclick=()=>it.classList.toggle("open");
+  list.appendChild(it)});
+ if(!n)list.innerHTML='<div class="empty">لا توجد حسابات</div>'}
+render();
+</script>
+</body>
+</html>
